@@ -5,7 +5,8 @@ module microprocessor(
     input fast_clock,
     input clear,
     output [3:0] first_segment,
-    output [3:0] second_segment
+    output [3:0] second_segment,
+    output [7:0] read_address
     );
 
     // 1-second clock
