@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+
 module register_file(
     input [1:0] read_reg1,
     input [1:0] read_reg2,
