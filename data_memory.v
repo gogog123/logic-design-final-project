@@ -6,6 +6,7 @@ module data_memory(
     input address,
     input [7:0] data_to_write,
     input clock,
+    input clear,
     output reg [7:0] data_out
     );
 
