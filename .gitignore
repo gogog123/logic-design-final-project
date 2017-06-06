@@ -1,0 +1,6 @@
+_xmsgs/
+ipcore_dir/
+iseconfig/
+*.gise
+*.xise
+*.html
