@@ -4,3 +4,15 @@ iseconfig/
 *.gise
 *.xise
 *.html
+.lso
+*.prj
+*.stx
+*.xst
+*.exe
+*.wdb
+*.log
+*.xmsgs
+*.cmd
+*.ini
+xst/
+isim/
