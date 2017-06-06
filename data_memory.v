@@ -33,6 +33,7 @@ module data_memory(
             memory[14] <= 8'b1110;
             memory[15] <= 8'b1111;
             memory[16] <= 8'b0;
+            // 2's complement notation
             memory[17] <= 8'b11111111;
             memory[18] <= 8'b11111110;
             memory[19] <= 8'b11111101;
