@@ -102,4 +102,15 @@ module microprocessor(
         .signal_aluop(signal_aluop)
     );
 
+    // seven segments
+    hex_to_seven_segment first_seg(
+        .in(reg_write_data[7:4]),
+        .out(first_segment)
+    );
+
+    hex_to_seven_segment second_seg(
+        .in(reg_write_data[3:0]),
+        .out(second_segment)
+    );
+
 endmodule
