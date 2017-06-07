@@ -36,6 +36,11 @@ module microprocessor(
     wire [7:0] output_alu;
 
 
+    // write data for register file, and also input for seven segments
+    wire [7:0] reg_write_data;
+    assign reg_write_data = signal_memtoreg ? output_memory : output_alu;
+
+
     // convert fast clock to 1-second clock
     clock_divider new_clock(
         .clock_in(fast_clock),
@@ -66,7 +71,7 @@ module microprocessor(
         .signal_regwrite(signal_regwrite),
         .clock(clock),
         // mux implementation
-        .write_data(signal_memtoreg ? output_memory : output_alu),
+        .write_data(reg_write_data),
         .output_reg1(output_reg1),
         .output_reg2(output_reg2)
     );
