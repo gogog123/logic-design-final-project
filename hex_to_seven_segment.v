@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module hex_to_seven_segment(
-    input [7:0] in,
-    output reg [3:0] out
+    input [3:0] in,
+    output reg [7:0] out
     );
 
     always @(in) begin
