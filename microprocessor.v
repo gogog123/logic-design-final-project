@@ -13,14 +13,14 @@ module microprocessor(
     wire clock;
 
     // control signals
-    wire signal_memtoreg,
-    wire signal_regwrite,
-    wire signal_alusrc,
-    wire signal_branch,
-    wire signal_memread,
-    wire signal_memwrite,
-    wire signal_regdst,
-    wire signal_aluop
+    wire signal_memtoreg;
+    wire signal_regwrite;
+    wire signal_alusrc;
+    wire signal_branch;
+    wire signal_memread;
+    wire signal_memwrite;
+    wire signal_regdst;
+    wire signal_aluop;
 
     // convert fast clock to 1-second clock
     clock_divider new_clock(
