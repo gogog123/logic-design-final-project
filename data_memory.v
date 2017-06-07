@@ -7,11 +7,14 @@ module data_memory(
     input [7:0] data_to_write,
     input clock,
     input clear,
-    output reg [7:0] data_out
+    output [7:0] data_out
     );
 
     // 2D array declaration
     reg [7:0] memory[0:31];
+
+    // SHOULD BE wire (only read)
+    assign data_out = memory[address];
 
     always @(posedge clock or posedge clear) begin
 
@@ -51,13 +54,8 @@ module data_memory(
             memory[31] <= 8'b11110001;
         end
         else begin
-            // read signal
-            if (signal_memread) begin
-                data_out <= memory[address];
-            end
-
             // write signal
-            else if (signal_memwrite) begin
+            if (signal_memwrite) begin
                 memory[address] <= data_to_write;
             end
         end
