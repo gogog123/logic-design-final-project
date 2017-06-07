@@ -22,6 +22,20 @@ module microprocessor(
     wire signal_regdst;
     wire signal_aluop;
 
+    // outputs from register file
+    wire [7:0] output_reg1;
+    wire [7:0] output_reg2;
+
+    // output from sign extend
+    wire [7:0] sign_extended_imm;
+
+    // output from data memory
+    wire [7:0] output_memory;
+
+    // output from ALU 
+    wire [7:0] output_alu;
+
+
     // convert fast clock to 1-second clock
     clock_divider new_clock(
         .clock_in(fast_clock),
@@ -41,6 +55,45 @@ module microprocessor(
         .signal_memtoreg(signal_memtoreg),
         .signal_memwrite(signal_memwrite),
         .signal_regwrite(signal_regwrite)
+    );
+
+    // register file
+    register_file regiters(
+        .read_reg1(instruction[5:4]),
+        .read_reg2(instruction[3:2]),
+        // mux implementation
+        .write_reg(signal_regdst ? instruction[1:0] : instruction[3:2]),
+        .signal_regwrite(signal_regwrite),
+        .clock(clock),
+        // mux implementation
+        .write_data(signal_memtoreg ? output_memory : output_alu),
+        .output_reg1(output_reg1),
+        .output_reg2(output_reg2)
+    );
+
+    // data memory
+    data_memory data_memory(
+        .clock(clock),
+        .clear(clear),
+        .signal_memread(signal_memread),
+        .signal_memwrite(signal_memwrite),
+        .address(output_alu),
+        .data_to_write(output_reg2),
+        .data_out(output_memory)
+    );
+
+    // sign extend
+    sign_extend sign_extend(
+        .in(instruction[1:0]),
+        .out(sign_extended_imm)
+    );
+
+    // ALU
+    adder alu(
+        .in1(output_reg1),
+        // mux implementation
+        .in2(signal_alusrc ? sign_extended_imm : output_reg2),
+        .out(output_alu)
     );
 
 endmodule
