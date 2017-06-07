@@ -35,10 +35,17 @@ module microprocessor(
     // output from ALU 
     wire [7:0] output_alu;
 
-
     // write data for register file, and also input for seven segments
     wire [7:0] reg_write_data;
     assign reg_write_data = signal_memtoreg ? output_memory : output_alu;
+
+    // wires for next pc
+    wire [7:0] incremented_pc;
+    wire [7:0] displaced_pc;
+    wire [7:0] next_pc;
+    wire [7:0] output_pc;
+    assign next_pc = signal_branch ? displaced_pc : incremented_pc;
+    assign read_address = output_pc;
 
 
     // convert fast clock to 1-second clock
@@ -111,6 +118,30 @@ module microprocessor(
     hex_to_seven_segment second_seg(
         .in(reg_write_data[3:0]),
         .out(second_segment)
+    );
+
+    // pc incrementer
+    adder incrementer(
+        .in1(8'b1),
+        .in2(output_pc),
+        .out(incremented_pc),
+        .signal_aluop(1'b1)
+    );
+
+    // displacement calculator (for branch)
+    adder displacer(
+        .in1(incremented_pc),
+        .in2(sign_extended_imm),
+        .out(displaced_pc),
+        .signal_aluop(1'b1)
+    );
+
+    // program counter
+    pc pc(
+        .clock(clock),
+        .clear(clear),
+        .pc_out(output_pc),
+        .next_pc(next_pc)
     );
 
 endmodule
