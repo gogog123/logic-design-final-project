@@ -22,14 +22,14 @@ module register_file(
         register[3] <= 8'b0;
     end
 
+    // SHOULD BE wire (only read)
+    assign output_reg1 = register[read_reg1];
+    assign output_reg2 = register[read_reg2];
+
     // main loop
     always @(posedge clock) begin
         if (signal_regwrite) begin
             register[write_reg] <= write_data;
-        end
-        else begin
-            output_reg1 <= register[read_reg1];
-            output_reg2 <= register[read_reg2];
         end
     end
 
