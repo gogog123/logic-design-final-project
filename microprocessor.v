@@ -93,7 +93,8 @@ module microprocessor(
         .in1(output_reg1),
         // mux implementation
         .in2(signal_alusrc ? sign_extended_imm : output_reg2),
-        .out(output_alu)
+        .out(output_alu),
+        .signal_aluop(signal_aluop)
     );
 
 endmodule
