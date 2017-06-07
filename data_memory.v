@@ -3,7 +3,7 @@
 module data_memory(
     input signal_memread,
     input signal_memwrite,
-    input address,
+    input [7:0] address,
     input [7:0] data_to_write,
     input clock,
     input clear,
