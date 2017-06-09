@@ -4,13 +4,22 @@ module microprocessor(
     input [7:0] instruction,
     input fast_clock,
     input clear,
-    output [3:0] first_segment,
-    output [3:0] second_segment,
-    output [7:0] read_address
+    output [6:0] first_segment,
+    output [6:0] second_segment,
+    output [7:0] read_address,
+    // additional implementation (show register to seven segment)
+    output [6:0] reg0_segment,
+    output [6:0] reg1_segment,
+    output [6:0] reg2_segment,
+    output [6:0] reg3_segment,
+    // show clock signal (red led)
+    output out_clock
     );
 
     // 1-second clock
     wire clock;
+    // show clock to led
+    assign out_clock = clock;
 
     // control signals
     wire signal_memtoreg;
@@ -47,6 +56,12 @@ module microprocessor(
     assign next_pc = signal_branch ? displaced_pc : incremented_pc;
     assign read_address = output_pc;
 
+    // wire for showing seven segment of register content
+    wire [7:0] reg0_segment_;
+    wire [7:0] reg1_segment_;
+    wire [7:0] reg2_segment_;
+    wire [7:0] reg3_segment_;
+
 
     // convert fast clock to 1-second clock
     clock_divider new_clock(
@@ -77,10 +92,16 @@ module microprocessor(
         .write_reg(signal_regdst ? instruction[1:0] : instruction[3:2]),
         .signal_regwrite(signal_regwrite),
         .clock(clock),
+        .clear(clear),
         // mux implementation
         .write_data(reg_write_data),
         .output_reg1(output_reg1),
-        .output_reg2(output_reg2)
+        .output_reg2(output_reg2),
+        // additional implementation
+        .reg0_segment(reg0_segment_),
+        .reg1_segment(reg1_segment_),
+        .reg2_segment(reg2_segment_),
+        .reg3_segment(reg3_segment_)
     );
 
     // data memory
@@ -142,6 +163,29 @@ module microprocessor(
         .clear(clear),
         .pc_out(output_pc),
         .next_pc(next_pc)
+    );
+
+
+    // CODE BELOW ARE ADDITIONAL IMPLEMENTATION
+    
+    hex_to_seven_segment h1(
+        .in(reg0_segment_[3:0]),
+        .out(reg0_segment)
+    );
+
+    hex_to_seven_segment h2(
+        .in(reg1_segment_[3:0]),
+        .out(reg1_segment)
+    );
+
+    hex_to_seven_segment h3(
+        .in(reg2_segment_[3:0]),
+        .out(reg2_segment)
+    );
+
+    hex_to_seven_segment h4(
+        .in(reg3_segment_[3:0]),
+        .out(reg3_segment)
     );
 
 endmodule

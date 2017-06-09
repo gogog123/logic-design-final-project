@@ -1,7 +1,7 @@
 module tester(
-    input address,
+    input [7:0] address,
     input clear,
-    output instruction
+    output [7:0] instruction
 );
 
 // memory for instruction

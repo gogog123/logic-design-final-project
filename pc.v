@@ -10,7 +10,7 @@ module pc(
 
     // initial pc value is 0
     initial begin
-        current_pc <= 7'b0;
+        current_pc <= 8'b0;
     end
 
     // pc output
@@ -18,7 +18,7 @@ module pc(
 
     always @(posedge clock or posedge clear) begin
         if (clear) begin
-            current_pc <= 7'b0;
+            current_pc <= 8'b0;
         end
         else begin
             // reload pc to next pc
