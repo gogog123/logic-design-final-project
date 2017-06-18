@@ -27,22 +27,22 @@ assign memory[11] = 8'b01110001; // rw 12
 assign memory[12] = 8'b01000101; 
 assign memory[13] = 8'b01011001; 
 assign memory[14] = 8'b01101101; 
-assign memory[15] = 8'b01110001; // rw 16
+assign memory[15] = 8'b01110001; // rw
 
 assign memory[16] = 8'b01000101; 
 assign memory[17] = 8'b01011001; 
 assign memory[18] = 8'b01101101; 
-assign memory[19] = 8'b01110001; // rw 20
+assign memory[19] = 8'b01110001; // 
 
 assign memory[20] = 8'b01000101; 
 assign memory[21] = 8'b01011001; 
 assign memory[22] = 8'b01101101; 
-assign memory[23] = 8'b01110001; // rw 24
+assign memory[23] = 8'b01110001; // 
 
 assign memory[24] = 8'b01000101; 
 assign memory[25] = 8'b01011001; 
 assign memory[26] = 8'b01101101; 
-assign memory[27] = 8'b01110001; // rw 28
+assign memory[27] = 8'b01110001; //
 
 assign memory[28] = 8'b11000011; // stop
 
