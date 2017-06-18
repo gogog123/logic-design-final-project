@@ -14,6 +14,7 @@ assign memory[1] = 8'b01011001; // m2(2) to s2 : r0120 rw 2
 assign memory[2] = 8'b00011000; // s1(1)+s2(2) to s0 : r3120 rw 3
 assign memory[3] = 8'b01011100; // m1(1) to s3 : r3121 rw 1
 assign memory[4] = 8'b00001101; // s0(3)+s3(1) to s1 : r3421 rw 4
+
 assign memory[5] = 8'b10110100; // s1 to m1 : m0423.. 
 assign memory[6] = 8'b01100000; // m2(2) to s0 : r2421 rw 2
 assign memory[7] = 8'b00011011; // s1(4)+s2(2) to s3 : r2426 rw 6
