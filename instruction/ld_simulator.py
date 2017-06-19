@@ -1,3 +1,6 @@
+import sys
+
+
 def print_registers(reg):
     print('registers: ', end='')
     for i, r in enumerate(reg):
@@ -5,7 +8,7 @@ def print_registers(reg):
     print('')
 
 
-f = open('instruction', 'r')
+f = open(sys.argv[1], 'r')
 instructions = f.readlines()
 f.close()
 
