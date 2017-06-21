@@ -1,3 +1,5 @@
+*.jpg
+*.pdf
 report/
 report-out/
 *.tar*

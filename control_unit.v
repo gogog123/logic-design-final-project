@@ -1,7 +1,6 @@
 `timescale 1ns / 1ps
 
 module control_unit(
-    input clock,
     input [1:0] opcode,
     output signal_memtoreg,
     output signal_regwrite,

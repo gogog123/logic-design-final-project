@@ -72,7 +72,6 @@ module microprocessor(
 
     // control signal distribution
     control_unit control(
-        .clock(clock),
         .opcode(instruction[7:6]),
         .signal_aluop(signal_aluop),
         .signal_alusrc(signal_alusrc),
