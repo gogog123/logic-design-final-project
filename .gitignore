@@ -1,3 +1,6 @@
+report/
+report-out/
+*.tar*
 _xmsgs/
 ipcore_dir/
 iseconfig/
